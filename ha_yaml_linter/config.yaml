@@ -1,0 +1,15 @@
+name: "HA YAML Indentation Linter"
+description: "Specialized indentation linter and auto-fixer for Home Assistant configuration files."
+version: "1.0.0"
+slug: "ha_yaml_linter"
+init: false
+arch:
+  - aarch64
+  - amd64
+  - armhf
+  - armv7
+ports:
+  5000/tcp: 5000
+webui: http://[HOST]:[PORT:5000]/
+ingress: true
+ingress_port: 5000
