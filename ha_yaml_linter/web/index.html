@@ -419,6 +419,7 @@
         });
 
         function handleFile(file) {
+            currentFilename = file.name;
             const reader = new FileReader();
             reader.onload = (e) => {
                 editor.value = e.target.result;
@@ -430,6 +431,7 @@
 
         // Apply auto-fix
         let currentErrorDetails = null;
+        let currentFilename = 'configuration.yaml';
 
         function applyAutoFix() {
             if (!currentErrorDetails) return;
@@ -466,6 +468,21 @@
                 }
             } catch (err) {
                 console.error("Failed to unify style:", err);
+            }
+        }
+
+        function downloadYAML() {
+            const yamlText = editor.value;
+            const blob = new Blob([yamlText], { type: 'text/yaml;charset=utf-8;' });
+            const link = document.createElement('a');
+            if (link.download !== undefined) {
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', currentFilename);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
             }
         }
 
@@ -525,6 +542,9 @@
                     <div class="alert alert-success" style="margin-bottom: 20px;">
                         <strong style="font-size: 1.1rem; display: block; margin-bottom: 5px;">✓ Validation Succeeded!</strong>
                         Your Home Assistant configuration is perfectly structured and valid. No indentation errors were found.
+                        <div style="margin-top: 15px;">
+                            <button onclick="downloadYAML()" class="btn-success" style="background-color: #28a745; padding: 8px 16px; font-size: 0.88rem; width: auto; display: inline-flex; align-items: center; gap: 6px;">💾 Download file: ${escapeHtml(currentFilename)}</button>
+                        </div>
                     </div>
                     ${warningHtml}`;
             } else {
