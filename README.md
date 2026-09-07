@@ -9,6 +9,8 @@ Home Assistant configurations frequently use modular split files with custom YAM
 - **HA-Specific Parsing:** Native support for Home Assistant custom tags (`!include`, `!secret`, `!include_dir_list`, etc.) so the parser never chokes on valid HA configurations.
 - **Definitive Indentation Analyzer:** A robust, first-pass indentation engine that identifies inconsistent indentation levels, mismatched list markers (`-`), and incorrectly aligned dictionary blocks.
 - **Mixed Style Detection & Auto-Unification:** Automatically detects if a file mixes sequence indentation styles (Compact vs. Nested) and offers one-click or command-line auto-unification options to make formatting 100% consistent.
+- **Interactive Style Warning Panel:** Web UI automatically highlights mixed styles with an amber alert and offers instant one-click unification options.
+- **"Download Tidied File" Button:** Safely download your fully repaired or unified YAML configuration file directly from the browser, retaining the original uploaded file name (e.g., `test.yaml`).
 - **Smart "Most Likely" Fix Suggestions:** Instead of just reporting a syntax error, the linter analyzes surrounding lines to suggest the exact column adjustment required.
 - **Flexible Ingestion:**
   - **CLI File Input:** Check local files.
@@ -22,21 +24,23 @@ Home Assistant configurations frequently use modular split files with custom YAM
 
 ## Installation & Getting Started
 
-### 🚀 1. Install as a Home Assistant OS Add-on (Recommended)
+### 🚀 1. Install as a Home Assistant OS App / Add-on (Recommended)
+
+> 💡 **Note:** Recent Home Assistant updates refer to add-ons as **"Apps"** inside the store and Supervisor logs. This linter is fully compatible with both the traditional Add-ons store and the new Apps terminology.
 
 You can run this linter securely and locally on your Raspberry Pi or Home Assistant device with **zero performance impact**. It embeds directly as an option in your Home Assistant left sidebar right next to your dashboards!
 
-1. In Home Assistant, navigate to **Settings** > **Add-ons**.
-2. Click **Add-on Store** in the bottom right corner.
+1. In Home Assistant, navigate to **Settings** > **Add-ons** (or **Apps**).
+2. Click **Add-on Store** (or **Apps Store**) in the bottom right corner.
 3. Click the **three dots** in the top-right corner and select **Repositories**.
 4. Paste the URL of this repository:
    ```
    https://github.com/thatguyinoz/ha-yaml-linter
    ```
    and click **Add**.
-5. Close the popup. The Add-on Store will automatically refresh.
+5. Close the popup. The store will automatically refresh.
 6. Scroll down or search for **"ha-yaml-linter"** and select **HA YAML Indentation Linter**.
-7. Click **Install**.
+7. Click **Install** (or **Install App**).
 8. Once installed, toggle **"Show in sidebar"** and click **Start**!
 
 ---
